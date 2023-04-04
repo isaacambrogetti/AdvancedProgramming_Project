@@ -1,3 +1,6 @@
 # AdvancedProgramming_Project
 
-questo è il file che spiega il progetto
+Here it is possible to download the files of our Advanced Programming' Project.
+A detailed presentation can be found in the section "Project Documentation" implemented on the webpage.
+
+Ambrogetti Isaac, Errigo Sofia, Gallo Guglielmo, Giglio Emilia
