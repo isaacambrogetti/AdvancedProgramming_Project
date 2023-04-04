@@ -1,0 +1,89 @@
+{%extends "base.html" %}
+{%block content%}
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgba(21, 19, 19, 0.5);
+  color: white;
+}
+</style>
+<html>
+  <head><title>Operations</title></head>
+  <body>
+      <div class= "ProjectDocumentation">
+        <h1>Operations</h1>
+        <div>
+          <p>
+
+<table id="customers">
+  <tr>
+    <th>Operation</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><a href="/op1">Basic Info</a><br></td>
+    <td>getting the some basic information about the dataset. The basic information are the name and data type of each column</td>
+  </tr>
+  <tr>
+    <td><a href="/op2">IdList</a></td>
+    <td>obtaining the list of unique sequence IDs available in the dataset</td>
+  </tr>
+  <tr>
+    <td><a href="/op3">UniqueOperations</a></td>
+    <td>obtaining the list of unique type of operations available in the dataset</td>
+  </tr>
+  <tr>
+    <td><a href="/op4">NFeatures</a></td>
+    <td>counting the number of features provided by the same source</td>
+  </tr>
+  <tr>
+    <td><a href="/op5">NEntries</a></td>
+    <td>counting the number of entries for each type of operation</td>
+  </tr>
+  <tr>
+    <td><a href="/op6">DSChromosomes</a></td>
+    <td>deriving a new dataset containing only the information about entire chromosomes. Entries with entire chromosomes comes from source GRCh38</td>
+  </tr>
+  <tr>
+    <td><a href="/op7">UnassembledSeq</a></td>
+    <td>calculating the fraction of unassembled sequences from source GRCh38. Hint: unassembled sequences are of type supercontig while the others are of chromosome</td>
+  </tr>
+  <tr>
+    <td><a href="/op8">Filtered</a></td>
+    <td>obtaining a new dataset containing only entries from source ensembl , havana and ensembl_havana </td>
+  </tr>
+  <tr>
+    <td><a href="/op9">FilteredEntries</a></td>
+    <td>counting the number of entries for each type of operation for the dataset containing containing only entries from source ensembl , havana and ensembl_havana</td>
+  </tr>
+  <tr>
+    <td><a href="/op10">FilteredGeneNames</a></td>
+    <td>returning the gene names from the dataset containing containing only entries from source ensembl, havana and ensembl_havana</td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+{%endblock%}

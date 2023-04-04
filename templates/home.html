@@ -1,0 +1,26 @@
+{%extends "base.html" %}
+{%block content%}
+<div class="row">
+  <div class="column side">
+    <h2>GitHub</h2>
+    <p>Here you can find the link to the GitHub page where all the files related to this project are available for the download.</p>
+  </div>
+  
+  <div class="column middle">
+    <h2>Metagenome analysis</h2>
+    <p>
+      This software allows you to read GFF3 files, retrieve the information related to genetic material and allow operations to be executed on datas under the form of a Pandas DataFrame.<br>
+    </p>
+    <p>
+      In this case a given GFF3 file about the human genome annotation is the source of genomics information for enabling the operations to be executed.<br>
+      By using a dataset object, various insights can be gained from the data through the execution of operations. Each operation is carried out on a dataset object, producing another dataset object as a result. There are several types of operations that can be executed, all of which can be accessed and executed by a dataset object regardless of the specific operation type.<br>
+    </p>
+  </div>
+  
+  <div class="column side">
+    <h2>Università di Bologna</h2>
+    <p><img id='uni' src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Seal_of_the_University_of_Bologna.svg/225px-Seal_of_the_University_of_Bologna.svg.png"/></p>
+  </div>
+</div>
+
+{%endblock%}

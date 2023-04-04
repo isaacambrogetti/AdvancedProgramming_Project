@@ -1,0 +1,100 @@
+{%extends "base.html" %}
+{%block content%}
+<html>
+    <head><title>Project Documentation</title></head>
+    <body>
+        <div class= "ProjectDocumentation">
+          <h1>Project Documentation</h1>
+          <div>
+            <p>
+              The project is developed on 3 different python files: app.py, dataset.py, reader.py.<br>
+              The interaction between these three files starts from app.py: when the website is activated, an instance of GFF3_dataset is created,
+              and then a dataset is built using readDataframe which is a class of dataset.py file.<br>
+              app.py communicates with other .html files and eventually, when an operation is selected from the operations.html page, it reaches 
+              dataset.py to do an operation on the dataset. The output of the concrete implementations of the operation class is a Pandas dataset.<br>
+              The dataset is returned to app.py which uses .to_html method that converts the dataset into its html language version and stores it 
+              in a variable used to overwrite the specific corresponding operation .html file. The .html file is opened and the table is printed out.<br>
+            </p>
+
+          <h3>UML</h3>
+          <img src="/static/img/uml.jpg"  alt="uml" style="width:80%;height:auto;display:block;margin-left:auto;margin-right:auto;">
+          
+        </div>
+
+          <h3>reader.py</h3>
+          <p>
+            Contains the Reader class which serves as an abstract base class (ABC) that defines the interface for reading data.<br>
+            It has two abstract methods, __init__ and read, that must be implemented by any concrete subclasses. The objective of having an abstract reader class is to allow having further implementations for reading other files different than just GFF3.<br>
+            The __init__ method takes a list of columns and any additional arguments as input and does not return anything. The read method does not take any input and must return an object that is not specified in this class. <br>
+            The GFF3PandasReader class is a concrete implementation of the Reader interface that reads data from a file in GFF3 format and returns it as a Pandas DataFrame. The __init__ method takes a list of columns as an argument and sets it as an instance variable __cols. The read method takes a filepath as an argument and returns a pandas DataFrame created by reading the data from the specified file using pd.read_csv.<br><br>
+            The method has the following parameters:
+              <ul>
+                  <li>filepath: a string representing the file path of the data to be read.</li>
+                  <li>sep: the separator used in the file, which is set to a tab character.</li>
+                  <li>names: the names of the columns, which is set to the __cols instance variable.</li>
+                  <li>comment: the character used to denote comments in the file, which is set to the hash symbol.</li>
+                  <li>low_memory: a Boolean that determines whether or not the memory usage should be optimized while reading the data, which is set to False.</li>
+              </ul>
+          </p>
+
+          <p><br><br>Here is the CRC card explaining the reader class and GFF3PandasReader</p>
+          <img src="/static/CRCcards/CRCreader.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+          <img src="/static/CRCcards/CRCGFF3pandasreader.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+
+          <h3>dataset.py</h3>
+          <img src="/static/CRCcards/CRCdataset.png"  alt="dataset CRCcard" style="width:50%;height:30%;">
+          <p>
+            There are 13 classes, two of which abstract, and one decorator function.<br>
+            The function decorator is_active_decorator can be used to add functionality to other functions. Decorators allow us to wrap another function in order to extend the behaviour of wrapped function, without permanently modifying it.<br>
+            In this case, the wrapper function takes self as the first argument, followed by any additional arguments *args and keyword arguments **kwargs (for passing keyword arguments to a function).<br>
+            The wrapper function first checks if the class of self is in the registry, and if the type of the first argument in args (i.e., args[0]) is present in the registry. The registry is retrieved using the getRegistry method.<br>
+            In this case, the wrapper function checks if an operation is active by calling the getRegistry method: if the check is successful, so it is active and the name of the object passed as the first argument is present in the registry, it executes the original function by calling function(*args, **kwargs); if the operation is not active or the name of the object is not in the registry, an exception with the message "Operation is not active" is raised.<br><br>
+
+            The Operation class serves as an abstract base class for other classes to inherit from. The class is defined using the ABC from the abc module, which provides the abstract class mechanism in Python.<br>
+            The Operation class has a single abstract method execute that takes a single argument dataset. The abstract method is defined using the @abstractmethod decorator. This means that any class that inherits from Operation must implement the execute method, or else it will raise a TypeError. The purpose of the execute method is to perform some operation on the dataset argument.<br><br>
+
+            The 10 operations that have to be done on the dataset are implemented in 10 different classes which all return a Pandas' dataframe.<br>
+            <ol>
+              <li>BasicInfo()<br>Returns a dataset with basic informations, such as the name associated to the data type.</li>
+              <img src="/static/CRCcards/CRCopbasicinfo.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <li>IdList()<br>Returns a dataset with unique sequence IDs.</li>
+              <img src="/static/CRCcards/CRCopidlist.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <li>UniqueOperations()<br>Returns a dataset with unique types of operations.</li>
+              <img src="/static/CRCcards/CRCopuniqueoperations.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <li>NFeatures()<br>Returns a dataset with features obtained by the same source.</li>
+              <img src="/static/CRCcards/CRCopnfeatures.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <li>NEntries<br>Returns a dataset with the number of entries for each type of operations.</li>
+              <img src="/static/CRCcards/CRCopnentries.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <li>DSChromosomes()<br>Returns a dataset with only chromosomes coming from GRCh38 sources.</li>
+              <img src="/static/CRCcards/CRCopdschromosomes.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <li>UnassembledSeq()<br>Returns a dataset with one column and one row containing the fraction of the unassembled sequences over the total sequences coming from a GRCh38.</li>
+              <img src="/static//CRCcards/CRCopunassembledseq.png" alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <li>Filtered()<br>Returns a dataset containing only sequences from sources ensembl, havana and ensemble_havana.</li>
+              <img src="/static/CRCcards/CRCopfiltered.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <li>FilteredEntries()<br>Returns a dataset that contains the number of entries for each type of sources for a dataset containing ensemble, havana and ensemble_havana entries.</li>
+              <img src="/static/CRCcards/CRCopfilteredentries.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <li>FilteredNames()<br>Returns a dataset containing the gene names of the dataset containing only ensemble, havana and ensemble_havana entries.</li>
+              <img src="/static/CRCcards/CRCopfilteredgenenames.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+          </ol>
+          
+          </p>
+
+          <p>
+            The class Dataset is an abstract class which contains four abstract methods and GFF3_dataset class inherits from it.<br>
+            __init__ takes as arguments *arg, and **kwargs, it will contain the private registry which contain the name of the active operations in the concrete implementation of the GFF3_dataset class. The registry is specific for operations that can be done on a GFF3 file so that in case a different file needs to be read it can be done with further concrete implementations of the class Dataset.<br>
+            readDataframe takes just self as argument and is responsible for the setting of the dataframe passing specific column names to the read method of GFF3PandasReader.<br>
+            The apply function has self and op as parameters. op represent the name of the operation, it is used to call it.<br>
+            Finally, getRegistry has self as argument and it is just needed to get the registry so that the decorator can use it to check whether the operation that wants to be done is present.<br><br>
+            
+            <img src="/static/CRCcards/CRCGFF3dataset.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+          </p>
+          <h3>app.py</h3>
+          <p>
+            It is the file of the web application and is implemented using the flask library.<br>
+            The program creates an instance of the class GFF3_dataset, and then calls the method readDataframe passing as argument the file path of the GFF3 file.<br>
+            In the core of the file is developed with a function for the html home page and other ones for each operation executed on the dataset. It is also present the function for calling the aboutus page, the project documentation page and the operation page which gathers in a list the operations.<br>
+          </p>
+        </div>
+    </body>
+</html>
+{%endblock%}
