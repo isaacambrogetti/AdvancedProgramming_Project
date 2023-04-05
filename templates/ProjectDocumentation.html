@@ -38,11 +38,11 @@
           </p>
 
           <p><br><br>Here is the CRC card explaining the reader class and GFF3PandasReader</p>
-          <img src="/static/CRCcards/CRCreader.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
-          <img src="/static/CRCcards/CRCGFF3pandasreader.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+          <img src="/static/CRCcards/CRCreader.png"  alt="CRCcard" style="width:50%;height:30%;"><br><br>
+          <img src="/static/CRCcards/CRCGFF3pandasreader.png"  alt="CRCcard" style="width:50%;height:30%;"><br><br>
 
           <h3>dataset.py</h3>
-          <img src="/static/CRCcards/CRCdataset.png"  alt="dataset CRCcard" style="width:50%;height:30%;">
+          <img src="/static/CRCcards/CRCdataset.png"  alt="CRCcard" style="width:50%;height:30%;">
           <p>
             There are 13 classes, two of which abstract, and one decorator function.<br>
             The function decorator is_active_decorator can be used to add functionality to other functions. Decorators allow us to wrap another function in order to extend the behaviour of wrapped function, without permanently modifying it.<br>
@@ -56,25 +56,25 @@
             The 10 operations that have to be done on the dataset are implemented in 10 different classes which all return a Pandas' dataframe.<br>
             <ol>
               <li>BasicInfo()<br>Returns a dataset with basic informations, such as the name associated to the data type.</li>
-              <img src="/static/CRCcards/CRCopbasicinfo.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <img src="/static/CRCcards/CRCopbasicinfo.png"  alt="CRCcard" style="width:50%;height:30%;"><br><br>
               <li>IdList()<br>Returns a dataset with unique sequence IDs.</li>
-              <img src="/static/CRCcards/CRCopidlist.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <img src="/static/CRCcards/CRCopidlist.png"  alt="CRCcard" style="width:50%;height:30%;"><br><br>
               <li>UniqueOperations()<br>Returns a dataset with unique types of operations.</li>
-              <img src="/static/CRCcards/CRCopuniqueoperations.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <img src="/static/CRCcards/CRCopuniqueoperations.png"  alt="CRCcard" style="width:50%;height:30%;"><br><br>
               <li>NFeatures()<br>Returns a dataset with features obtained by the same source.</li>
-              <img src="/static/CRCcards/CRCopnfeatures.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <img src="/static/CRCcards/CRCopnfeatures.png"  alt="CRCcard" style="width:50%;height:30%;"><br><br>
               <li>NEntries<br>Returns a dataset with the number of entries for each type of operations.</li>
-              <img src="/static/CRCcards/CRCopnentries.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <img src="/static/CRCcards/CRCopnentries.png"  alt="CRCcard" style="width:50%;height:30%;"><br><br>
               <li>DSChromosomes()<br>Returns a dataset with only chromosomes coming from GRCh38 sources.</li>
-              <img src="/static/CRCcards/CRCopdschromosomes.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <img src="/static/CRCcards/CRCopdschromosomes.png"  alt="CRCcard" style="width:50%;height:30%;"><br><br>
               <li>UnassembledSeq()<br>Returns a dataset with one column and one row containing the fraction of the unassembled sequences over the total sequences coming from a GRCh38.</li>
-              <img src="/static//CRCcards/CRCopunassembledseq.png" alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <img src="/static//CRCcards/CRCopunassembledseq.png" alt="CRCcard" style="width:50%;height:30%;"><br><br>
               <li>Filtered()<br>Returns a dataset containing only sequences from sources ensembl, havana and ensemble_havana.</li>
-              <img src="/static/CRCcards/CRCopfiltered.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <img src="/static/CRCcards/CRCopfiltered.png"  alt="CRCcard" style="width:50%;height:30%;"><br><br>
               <li>FilteredEntries()<br>Returns a dataset that contains the number of entries for each type of sources for a dataset containing ensemble, havana and ensemble_havana entries.</li>
-              <img src="/static/CRCcards/CRCopfilteredentries.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <img src="/static/CRCcards/CRCopfilteredentries.png"  alt="CRCcard" style="width:50%;height:30%;"><br><br>
               <li>FilteredNames()<br>Returns a dataset containing the gene names of the dataset containing only ensemble, havana and ensemble_havana entries.</li>
-              <img src="/static/CRCcards/CRCopfilteredgenenames.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+              <img src="/static/CRCcards/CRCopfilteredgenenames.png"  alt="CRCcard" style="width:50%;height:30%;"><br><br>
           </ol>
           
           </p>
@@ -86,7 +86,7 @@
             The apply function has self and op as parameters. op represent the name of the operation, it is used to call it.<br>
             Finally, getRegistry has self as argument and it is just needed to get the registry so that the decorator can use it to check whether the operation that wants to be done is present.<br><br>
             
-            <img src="/static/CRCcards/CRCGFF3dataset.png"  alt="dataset CRCcard" style="width:50%;height:30%;"><br><br>
+            <img src="/static/CRCcards/CRCGFF3dataset.png"  alt="CRCcard" style="width:50%;height:30%;"><br><br>
           </p>
           <h3>app.py</h3>
           <p>
