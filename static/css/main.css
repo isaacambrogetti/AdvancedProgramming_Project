@@ -145,7 +145,7 @@ html {
 }
 
 .container {
-  padding: 0 16px;
+  padding: 5% 5%;
 }
 
 .container::after, .row::after {
